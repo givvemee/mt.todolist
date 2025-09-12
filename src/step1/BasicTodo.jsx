@@ -10,11 +10,22 @@ const BasicTodo = () => {
   ]);
   // TODO: 1. 할 일 입력을 위한 state 생성
 
+  const [newDo,setNewDo] = useState(""); // newDo는 상태를 담는 변수, 할 일 들이 변수에 저장, setNewDo로 값 업데이트
+
   // TODO: 2. 할 일 추가 함수 구현
-  const addTodo = () => { };
+  const addTodo = () => { 
+    const  newTodoList = [...todoList, {job : newDo, state: "미완료"}]; // 스프레드 연산자로 원래 todoList 복사하여 추가한값을 넣어줌
+    setTodoList(newTodoList); // 목록 업데이트
+    setNewDo(""); // 업데이트 입력칸 비우기
+    }
+  };
 
   // TODO: 3. 완료/미완료 토글 함수 구현
-  const toggleTodoState = (index) => { };
+  const toggleTodoState = (index) => {
+    const newTodoList = [...todoList] // 기존배열 복사
+    newTodoList[index].state = newTodoList[index].state === "완료" ? "미완료" : "완료" ; // index 항목을 찾아 state 값을 새로운 값으로 변경 (완료면 미완료 else 완료)
+    setTodoList(newTodoList) // 목록 업데이트
+   };
 
   // TODO: 4. 할 일 삭제 함수 구현
   const deleteTodo = (index) => { };

@@ -9,18 +9,47 @@ const BasicTodo = () => {
     { job: "산책하기", state: "미완료" },
   ]);
   // TODO: 1. 할 일 입력을 위한 state 생성
-
+  const [newTodo, setNewTodo] = useState("");
   // TODO: 2. 할 일 추가 함수 구현
-  const addTodo = () => { };
+  const addTodo = () => { 
+     if (newTodo.trim() === "") return;
+     const updatedTodoList = [
+       ...todoList,
+       {
+         job: newTodo,
+         state: "미완료",
+       },
+     ];
+     setTodoList(updatedTodoList);
+     setNewTodo("")
+  };
 
   // TODO: 3. 완료/미완료 토글 함수 구현
-  const toggleTodoState = (index) => { };
+  const toggleTodoState = (index) => { 
+    // const toggledTodoList = [...todoList]; 
+    // toggledTodoList[index].state =
+    // toggledTodoList[index].state === "완료" ? "미완료" : "완료";
+    const toggledTodoList = todoList.map((todo, i) =>
+      i === index
+        ? { ...todo, state: todo.state === "완료" ? "미완료" : "완료" }
+        : todo
+    );
+    setTodoList(toggledTodoList);
+  };
 
   // TODO: 4. 할 일 삭제 함수 구현
-  const deleteTodo = (index) => { };
+  const deleteTodo = (index) => {
+    const deletedTodoList = todoList.filter((_, i) => i !== index);
+    setTodoList(deletedTodoList);
+  };
 
   // TODO: 5. Enter 키 처리 함수 (한국어 입력 고려)
-  const handleKeyDown = (e) => { };
+  const handleKeyDown = (e) => {
+    //console.log(e.key, e.nativeEvent.isComposing);
+    if (e.key === "Enter" && e.nativeEvent.isComposing) {
+      addTodo();
+    }
+  };
 
   return (
     <div className="todo-container">
@@ -32,8 +61,10 @@ const BasicTodo = () => {
             type="text"
             placeholder="새로운 할 일을 입력하세요..."
             /* TODO: 7. input 값 채우기 */
-            // value={} // 1번의 state 적용
-            onChange={(e) => { }} // 1번의 setState 적용
+            value={newTodo}
+            onChange={(e) => {
+              setNewTodo(e.target.value);
+            }} // 1번의 setState 적용
             onKeyDown={handleKeyDown}
           />
           <button className="add-button" onClick={addTodo}>
@@ -55,8 +86,8 @@ const BasicTodo = () => {
                   key={index}
                   todo={todo}
                   index={index}
-                  toggleTodoState={toggleTodoState}
-                  deleteTodo={deleteTodo}
+                  onToggle={toggleTodoState}
+                  onDelete={deleteTodo}
                 />
               ))}
             </div>

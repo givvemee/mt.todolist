@@ -9,22 +9,28 @@ const TodoItem = ({ todo, index, onToggle, onDelete }) => {
         className="todo-checkbox"
         type="checkbox"
         checked={todo.state === "완료"}
-        onChange={() => { }}
+        onChange={() => onToggle(index)}
       />
 
       <div className="todo-content">
         <p className={`todo-text ${todo.state === "완료" ? "completed" : ""}`}>
           {/* TODO: 3. 할 일 내용 표시 */}
+          {todo.job}
         </p>
       </div>
 
       <div className="todo-actions">
-        <span className={`todo-badge ${todo.state === "완료" ? "completed" : ""}`}>
+        <span
+          className={`todo-badge ${todo.state === "완료" ? "completed" : ""}`}
+        >
           {/* TODO: 5. 삼항 연산자를 이용하여 상태 표시 배지 */}
+          {todo.state === "완료" ? "완료" : "미완료"}
         </span>
 
         {/* TODO: 6. 삭제 버튼 구현  onClick 함수를 완성해 봅시다.*/}
-        <button className="delete-button" onClick={() => { }}>×</button>
+        <button className="delete-button" onClick={() => onDelete(index)}>
+          ×
+        </button>
       </div>
     </div>
   );

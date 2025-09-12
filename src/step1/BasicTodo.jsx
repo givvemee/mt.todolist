@@ -9,18 +9,24 @@ const BasicTodo = () => {
     { job: "산책하기", state: "미완료" },
   ]);
   // TODO: 1. 할 일 입력을 위한 state 생성
+  const [inputValue, setInputValue] = useState("");
 
   // TODO: 2. 할 일 추가 함수 구현
-  const addTodo = () => { };
+  const addTodo = () => {
+    const newTodo = { job: inputValue, state: "미완료" };
+
+    const newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
+  };
 
   // TODO: 3. 완료/미완료 토글 함수 구현
-  const toggleTodoState = (index) => { };
+  const toggleTodoState = (index) => {};
 
   // TODO: 4. 할 일 삭제 함수 구현
-  const deleteTodo = (index) => { };
+  const deleteTodo = (index) => {};
 
   // TODO: 5. Enter 키 처리 함수 (한국어 입력 고려)
-  const handleKeyDown = (e) => { };
+  const handleKeyDown = (e) => {};
 
   return (
     <div className="todo-container">
@@ -32,8 +38,8 @@ const BasicTodo = () => {
             type="text"
             placeholder="새로운 할 일을 입력하세요..."
             /* TODO: 7. input 값 채우기 */
-            // value={} // 1번의 state 적용
-            onChange={(e) => { }} // 1번의 setState 적용
+            value={inputValue} // 1번의 state 적용
+            onChange={(e) => setInputValue(e.target.value)} // 1번의 setState 적용
             onKeyDown={handleKeyDown}
           />
           <button className="add-button" onClick={addTodo}>

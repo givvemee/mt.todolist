@@ -18,7 +18,7 @@ const BasicTodo = () => {
     setTodoList([ ... todoList, newTodo]);
     setInputValue("")
 
-    // TODO: 9. 한국어를 입력했을 때 뒷 글자가 잘려서 새로운 투두로 입력되는 것 방지하기
+    // TODO: 9. 한국어를 입력했을 때 뒷 글자가 잘려서 새로운 투두로 입력되는 것 방지하기 (이 문제가 발생하는 사람만)
   };
 
   // TODO: 3. 완료/미완료 토글 함수 구현

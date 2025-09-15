@@ -14,8 +14,13 @@ const BasicTodo = () => {
   // TODO: 2. 할 일 추가 함수 구현
   const addTodo = () => {
     const newTodo = { job: inputValue, state: "미완료" };
-    setTodoList([...todoList, newTodo]);
-    setInputValue("");
+
+    if (inputValue) {
+      setTodoList([...todoList, newTodo]);
+      setInputValue("");
+    } else {
+      alert("할일을 입력해주세요.");
+    }
   };
 
   // TODO: 3. 완료/미완료 토글 함수 구현

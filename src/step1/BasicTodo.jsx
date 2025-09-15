@@ -13,17 +13,34 @@ const BasicTodo = () => {
 
   // TODO: 2. 할 일 추가 함수 구현
   const addTodo = () => {
-    const newTodo = { job: inputValue, state: "미완료" };
+    const text = inputValue.trim();
+    if (text === "") return; // 빈 문자열이면 추가하지 않음
 
+    const newTodo = { job: text, state: "미완료" };
     const newTodoList = [...todoList, newTodo];
+
     setTodoList(newTodoList);
+    setInputValue(""); // 입력 필드 초기화
   };
 
   // TODO: 3. 완료/미완료 토글 함수 구현
-  const toggleTodoState = (index) => {};
+  const toggleTodoState = (index) => {
+    setTodoList((prevTodoList) =>
+      prevTodoList.map((todo, i) => {
+        if (index === i) {
+          // const newState = todo.state === "완료" ? "미완료" : "완료";
+          // return { ...todo, state: newState };
+          return { ...todo, state: todo.state === "완료" ? "미완료" : "완료" };
+        }
+        return todo;
+      })
+    );
+  };
 
   // TODO: 4. 할 일 삭제 함수 구현
-  const deleteTodo = (index) => {};
+  const deleteTodo = (index) => {
+    setTodoList((prevTodoList) => prevTodoList.filter((_, i) => i !== index));
+  };
 
   // TODO: 5. Enter 키 처리 함수 (한국어 입력 고려)
   const handleKeyDown = (e) => {};
@@ -61,8 +78,8 @@ const BasicTodo = () => {
                   key={index}
                   todo={todo}
                   index={index}
-                  toggleTodoState={toggleTodoState}
-                  deleteTodo={deleteTodo}
+                  onToggle={toggleTodoState}
+                  onDelete={deleteTodo}
                 />
               ))}
             </div>

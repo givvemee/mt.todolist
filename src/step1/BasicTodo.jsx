@@ -69,8 +69,10 @@ const BasicTodo = () => {
             type="text"
             placeholder="새로운 할 일을 입력하세요..."
             /* TODO: 7. input 값 채우기 */
-            // value={} // 1번의 state 적용
-            onChange={(e) => {}} // 1번의 setState 적용
+            value={newTodo} // 1번의 state 적용
+            onChange={(e) => {
+              setNewTodo(e.target.value);
+            }} // 1번의 setState 적용
             onKeyDown={handleKeyDown}
           />
           <button className="add-button" onClick={addTodo}>
@@ -92,8 +94,8 @@ const BasicTodo = () => {
                   key={index}
                   todo={todo}
                   index={index}
-                  toggleTodoState={toggleTodoState}
-                  deleteTodo={deleteTodo}
+                  onToggle={toggleTodoState}
+                  onDelete={deleteTodo}
                 />
               ))}
             </div>

@@ -17,8 +17,7 @@ const BasicTodo = () => {
     const  newTodoList = [...todoList, {job : newDo, state: "미완료"}]; // 스프레드 연산자로 원래 todoList 복사하여 추가한값을 넣어줌
     setTodoList(newTodoList); // 목록 업데이트
     setNewDo(""); // 업데이트 입력칸 비우기
-    }
-  };
+    };
 
   // TODO: 3. 완료/미완료 토글 함수 구현
   const toggleTodoState = (index) => {
@@ -28,10 +27,17 @@ const BasicTodo = () => {
    };
 
   // TODO: 4. 할 일 삭제 함수 구현
-  const deleteTodo = (index) => { };
+  const deleteTodo = (index) => {
+    const newTodoList = todoList.filter((_, i) => i !== index);
+    setTodoList(newTodoList);
+    };
 
   // TODO: 5. Enter 키 처리 함수 (한국어 입력 고려)
-  const handleKeyDown = (e) => { };
+  const handleKeyDown = (e) => { 
+    if(e.key === 'Enter') {
+      addTodo();
+    }
+  };
 
   return (
     <div className="todo-container">

@@ -18,6 +18,18 @@ function TodoFilter({ currentFilter, onFilterChange }) {
       }}
     >
       {/* TODO: 2. filters 배열을 map으로 렌더링 */}
+      {filters.map((filter) => (
+        <button
+          key={filter.key}
+          onClick={() => onFilterChange(filter.label)}
+          style={{
+            backgroundColor:
+              currentFilter === filter.label ? filter.color : "#71717a",
+          }}
+        >
+          {filter.label}
+        </button>
+      ))}
     </div>
   );
 }

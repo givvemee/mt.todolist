@@ -18,7 +18,8 @@ function AdvancedTodo() {
 
   // TODO: 2. 새로운 할 일을 목록에 추가하는 함수 구현
   const addTodo = () => {
-    if (newTodo === "") return;
+    // 빈 문자열은 Falsy한 값
+    if (!newTodo) return;
 
     const newTodoItem = {
       id: Date.now(),

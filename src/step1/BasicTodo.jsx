@@ -14,9 +14,8 @@ const BasicTodo = () => {
   // TODO: 2. 할 일 추가 함수 구현
   const addTodo = () => {
     // newTodo에 값이 없다면 return
-    if (newTodo === "") {
-      return;
-    }
+    // 빈 문자열은 Falsy한 값
+    if (!newTodo) return;
 
     // 새로운 할 일의 객체 생성
     const newTodoItem = {
@@ -53,6 +52,10 @@ const BasicTodo = () => {
 
   // TODO: 5. Enter 키 처리 함수 (한국어 입력 고려)
   const handleKeyDown = (e) => {
+    // newTodo에 값이 없다면 return
+    // 빈 문자열은 Falsy한 값
+    if (!newTodo) return;
+
     // 누른 키가 Enter 키라면 입력
     if (e.key === "Enter") {
       addTodo();
